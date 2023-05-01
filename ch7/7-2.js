@@ -1,3 +1,6 @@
+// < 컬렉션 캡슐화하기 >
+// 🚨 컬렉션 자체에 push를 하고 delete를 할 수 있는건 위험해!
+// (외부에서 컬랙션을 맘대로 조작하도록 두면 안됨 )
 export class Person {
   #name;
   #courses;
@@ -11,11 +14,18 @@ export class Person {
   }
 
   get courses() {
-    return this.#courses;
+    return [...this.#courses];
   }
-
-  set courses(courses) {
-    this.#courses = courses;
+  addCourse(course) {
+    this.#courses.push(course);
+  }
+  removeCourse(course, runIfAbsent) {
+    const idx = this.#courses.indexOf(course);
+    if (idx === -1) {
+      runIfAbsent();
+      return;
+    }
+    this.#courses.splice(idx, 1);
   }
 }
 
@@ -36,6 +46,14 @@ export class Course {
   }
 }
 
-const ellie = new Person('엘리');
-ellie.courses.push(new Course('리팩토링', true));
-console.log(ellie.courses.length);
+const ellie = new Person("엘리");
+// 💩
+ellie.courses.push(new Course("리팩토링", true));
+// 💕
+const course = new Course("TDD", true);
+ellie.addCourse(course);
+console.log(ellie.courses.length); // output: 1
+ellie.removeCourse(course, () => {
+  console.log("해당 course는 존재하지 않습니다.");
+});
+console.log(ellie.courses.length); // output: 0
