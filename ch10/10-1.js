@@ -1,7 +1,25 @@
+// < 조건문 분해하기 >
 function calculateCharge(date, quantity, plan) {
-  let charge = 0;
-  if (!date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd))
-    charge = quantity * plan.summerRate;
-  else charge = quantity * plan.regularRate + plan.regularServiceCharge;
-  return charge;
+  return isSummer() ? summerCharge() : regularCharge();
+
+  function isSummer() {
+    return !date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd);
+  }
+  function summerCharge() {
+    return quantity * plan.summerRate;
+  }
+  function regularCharge() {
+    return quantity * plan.regularRate + plan.regularServiceCharge;
+  }
+}
+
+// yebin ver.
+function calculateCharge_t(date, quantity, plan) {
+  const isSummerTime =
+    !date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd);
+  const result = isSummerTime //
+    ? quantity * plan.summerRate
+    : quantity * plan.regularRate + plan.regularServiceCharge;
+
+  return result;
 }
