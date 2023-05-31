@@ -1,10 +1,10 @@
-import { createStatement } from "./create_statement.js";
+import { Statement } from "./create_statement.js";
 
 export function statement(invoice, plays) {
-  return renderPlainText(createStatement(invoice, plays));
+  return renderPlainText(new Statement(invoice, plays));
 }
 export function htmlStatement(invoice, plays) {
-  return renderHTML(createStatement(invoice, plays));
+  return renderHTML(new Statement(invoice, plays));
 }
 
 function renderHTML(statement) {

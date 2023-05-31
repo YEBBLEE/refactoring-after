@@ -56,20 +56,28 @@ class Comedy extends Performance {
   }
 }
 
-export function createStatement(invoice, plays) {
-  const statement = {};
-  statement.customer = invoice.customer;
-  statement.performances = invoice.performances.map((p) =>
-    Performance.create(p.audience, plays[p.playID])
-  );
-  statement.totalAmount = totalAmount(statement.performances);
-  statement.totalCredits = totalCredits(statement.performances);
-  return statement;
-
-  function totalAmount(performances) {
-    return performances.reduce((sum, perf) => sum + perf.amount, 0);
+export class Statement {
+  #customer;
+  #performances;
+  constructor(invoice, plays) {
+    this.#customer = invoice.customer;
+    this.#performances = invoice.performances.map((p) =>
+      Performance.create(p.audience, plays[p.playID])
+    );
   }
-  function totalCredits(performances) {
-    return performances.reduce((sum, perf) => sum + perf.credits, 0);
+
+  get customer() {
+    return this.#customer;
+  }
+  get performances() {
+    // performances가 Array로 object타입이므로 외부에서 혹시모를
+    // 내부 속성을 변경할 여지가 있어서 spread operator로 반환하도록 함
+    return [...this.#performances];
+  }
+  get totalAmount() {
+    return this.#performances.reduce((sum, perf) => sum + perf.amount, 0);
+  }
+  get totalCredits() {
+    return this.#performances.reduce((sum, perf) => sum + perf.credits, 0);
   }
 }
