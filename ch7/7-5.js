@@ -12,14 +12,12 @@ class TelephoneNumber {
   set areaCode(arg) {
     this.#areaCode = arg;
   }
-
   get number() {
     return this.#number;
   }
   set number(arg) {
     this.#number = arg;
   }
-
   get toString() {
     return `(${this.#areaCode}) ${this.#number}`;
   }

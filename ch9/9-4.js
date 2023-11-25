@@ -1,4 +1,4 @@
-// < 참조를 값으로 바꾸기 >
+// < 참조를 값으로 바꾸기 > 📌
 class Person {
   #name;
   #telephoneNumber;
@@ -6,7 +6,6 @@ class Person {
     this.#name = name;
     this.#telephoneNumber = new TelephoneNumber(areaCode, number);
   }
-
   get name() {
     return this.#name;
   }
@@ -16,11 +15,9 @@ class Person {
   get telephoneNumber() {
     return this.#telephoneNumber.toString;
   }
-
   get officeAreaCode() {
     return this.#telephoneNumber.areaCode;
   }
-
   // 참조를 통한 업데이트가 아니라, 참조를 값처럼 사용할 수 있도록
   // 하나라도 변경이 되면 새로운 인스턴스를 만듦
   set officeAreaCode(value) {
@@ -29,11 +26,9 @@ class Person {
       this.officeNumber
     ));
   }
-
   get officeNumber() {
     return this.#telephoneNumber.number;
   }
-
   set officeNumber(value) {
     return (this.#telephoneNumber = new TelephoneNumber(
       this.officeAreaCode,
@@ -51,15 +46,12 @@ class TelephoneNumber {
     this.#areaCode = area;
     this.#number = number;
   }
-
   get areaCode() {
     return this.#areaCode;
   }
-
   get number() {
     return this.#number;
   }
-
   get toString() {
     return `(${this.#areaCode}) ${this.#number}`;
   }

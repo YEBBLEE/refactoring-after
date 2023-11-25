@@ -1,6 +1,10 @@
 // < 컬렉션 캡슐화하기 >
 // 🚨 컬렉션 자체에 push를 하고 delete를 할 수 있는건 위험해!
 // (외부에서 컬랙션을 맘대로 조작하도록 두면 안됨 )
+// => 컬렉션(리스트 같은것들)을 외부에서 직접노출되지 않도록 하자.
+// 그래서 아래 예시코드에서도 get courses에 바로 this.#courses노출한게 아니라
+// spread operator로 한번 감싸서 새로운 배열이 리턴 되도록 함.
+
 export class Person {
   #name;
   #courses;
@@ -8,11 +12,9 @@ export class Person {
     this.#name = name;
     this.#courses = [];
   }
-
   get name() {
     return this.#name;
   }
-
   get courses() {
     return [...this.#courses];
   }
@@ -36,11 +38,9 @@ export class Course {
     this.#name = name;
     this.#isAdvanced = isAdvanced;
   }
-
   get name() {
     return this.#name;
   }
-
   get isAdvanced() {
     return this.#isAdvanced;
   }

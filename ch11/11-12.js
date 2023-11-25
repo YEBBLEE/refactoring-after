@@ -1,4 +1,4 @@
-// < 오류코드를 예외로 바꾸기 >
+// < 오류코드를 예외로 바꾸기 > 📌
 // -> 이건 내 플젝에도 적용해보자!
 function localShippingRules(data) {
   if (data) return new ShippingRules(data);

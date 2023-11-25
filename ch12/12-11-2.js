@@ -1,3 +1,4 @@
+// < 슈퍼클래스를 위임으로 바꾸기 >
 class CatalogItem {
   constructor(id, title, tags) {
     this._id = id;
@@ -18,19 +19,16 @@ class CatalogItem {
   }
 }
 
-class Scroll extends CatalogItem {
-  constructor(id, title, tags, dataLastCleaned) {
-    super(id, title, tags);
+class Scroll {
+  constructor(id, dataLastCleaned, catalogId, catalog) {
+    this._id = id;
+    this._catalogItem = catalog.get(catalogId);
     this._lastCleaned = dataLastCleaned;
   }
-
-  needsCleaning(targetDate) {
-    const threshold = this.hasTag('revered') ? 700 : 1500;
-
-    return this.daysSinceLastCleaning(targetDate) > threshold;
+  get id() {
+    return this._id;
   }
-
-  daysSinceLastCleaning(targetDate) {
-    return this._lastCleaned.until(targetDate, ChronoUnit.DAYS);
+  get title() {
+    return this._catalogItem.title;
   }
 }

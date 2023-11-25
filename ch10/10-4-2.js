@@ -1,4 +1,4 @@
-// < 조건부 로직을 다형성으로 바꾸기2 >
+// < 조건부 로직을 다형성으로 바꾸기2 > 📌
 export function rating(voyage, history) {
   // 투자 등급
   if (voyage.zone === "china" && history.some((v) => "china" === v.zone)) {

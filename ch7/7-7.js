@@ -6,19 +6,15 @@ class Person {
     this.#name = name;
     this.#department = department;
   }
-
   get name() {
     return this.#name;
   }
-
   get department() {
     return this.#department;
   }
-
   set department(arg) {
     this.#department = arg;
   }
-
   get manager() {
     return this.department.manager;
   }
@@ -34,19 +30,15 @@ export class Department {
     this.#manager = manager;
     this.#chargeCode = chargeCode;
   }
-
   get chargeCode() {
     return this.#chargeCode;
   }
-
   set chargeCode(arg) {
     this.#chargeCode = arg;
   }
-
   get manager() {
     return this.#manager;
   }
-
   set manager(arg) {
     this.#manager = arg;
   }

@@ -1,4 +1,4 @@
-// < 특이 케이스 추가하기 >
+// < 특이 케이스 추가하기 >📌
 // 예제2
 class Hotel {
   constructor() {
@@ -10,7 +10,6 @@ class Hotel {
   emptyRoom(roomNumber) {
     this.rooms[roomNumber] = new EmptyRoom(roomNumber);
   }
-
   cleanRooms() {
     this.rooms.forEach((room) => room.clean());
   }
@@ -57,19 +56,15 @@ hotel.cleanRooms();
 //   constructor(name) {
 //     this._name = name;
 //   }
-
 //   get name() {
 //     return this._name;
 //   }
-
 //   get billingPlan() {
 //     //
 //   }
-
 //   set billingPlan(arg) {
 //     //
 //   }
-
 //   get paymentHistory() {
 //     //
 //   }

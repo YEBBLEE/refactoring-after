@@ -1,8 +1,9 @@
 // < 레코드 캡슐화하기 >
+// 캡슐화 : 내부 구현사항을 숨기고, 외부에서 필요한 사항들만 공개
+
 class Organization {
   #name;
   #country;
-
   constructor(name, country) {
     this.#name = name;
     this.#country = country;
@@ -10,11 +11,9 @@ class Organization {
   get name() {
     return this.#name;
   }
-
   set name(value) {
     this.#name = value;
   }
-
   get country() {
     return this.#country;
   }
